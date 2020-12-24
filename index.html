@@ -1,77 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-    
-    <style>
-      *{
-        margin: 0;
-        padding: 0;
-      }
-      .wrapper{
-        width: 100%;
-        height: 100vh;
-        position: absolute;
-        /*background: red;*/
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 999;
-      }
-      .wrapper .box{
-        width: 200px;
-        height: 200px;
-        border: solid 3px #0afb0a;
-        box-shadow: 1px 1px 500px 5px rgba(0,0,0,0.8);
-      }
-      #preview{
-        width: 100%;
-        height: 100vh;
-        object-fit: cover;
-        position: fixed;
-      }
-      
-    </style>
-  </head>
-  <body>
-    
-    <div class="wrapper">
-      <div class="box">
-        
-      </div>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="box">
+
     </div>
-    <video id="preview"></video>
-    
-    
-    <script src="./instascan.min.js"></script>
-    
-    <script>
-      
-      const preview = document.querySelector('#preview');
-      
-      const scanner = new Instascan.Scanner({video: preview});
-      scanner.addListener('scan',content =>{
-        if(content.includes('https') || content.includes('http')){
-          window.open(content,'_blank');
-        }else{
-          alert(content)
-        }
-      });
-      
-      Instascan.Camera.getCameras()
-      .then(cam => {
-        if(cam.length > 0){
-         scanner.start(cam[0]);
-        }else{
-          console.log('No Cam')
-        }
-      })
-      .catch(err => console.log(err))
-      
-    </script>
-    
-    
-  </body>
+  </div>
+  <video id="preview"></video>
+  <div class="modal-main">
+    <div class="modal">
+      <h1>QR code Content</h1>
+      <h3 id="output">No Content</h3>
+      <button class="closeModal">CLOSE</button>
+    </div>
+  </div>
+
+
+
+  <script src="./instascan.min.js"></script>
+
+  <script src="./app.js"></script>
+
+
+</body>
 </html>
