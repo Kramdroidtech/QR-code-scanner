@@ -19,12 +19,25 @@ scanner.addListener('scan', content => {
   }
 });
 
-Instascan.Camera.getCameras()
-.then(cam => {
-  if (cam.length > 0) {
-    scanner.start(cam[1]);
-  } else {
-    console.log('No Cam')
+(async () => {
+  try {
+    const cam = await Instascan.Camera.getCameras();
+    if (cam.length > 0) {
+      scanner.start(cam[1]);
+    } else {
+      console.log('No Cam')
+    }
+  }catch(err) {
+    console.log(err)
   }
+})();
+window.addEventListener('load', () => {
+  document.querySelector('.main').style.display = 'none';
+  setInterval(() => {
+    if (preview.src) {
+      document.querySelector('.main').style.display = 'block';
+      document.querySelector('.loader').style.display = 'none';
+    }
+  },
+    100);
 })
-.catch(err => console.log(err))

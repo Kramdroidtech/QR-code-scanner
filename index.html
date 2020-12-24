@@ -7,21 +7,25 @@
   <link rel="stylesheet" href="./index.css">
 </head>
 <body>
+  <div class="main">
+    <div class="wrapper">
+      <div class="box">
 
-  <div class="wrapper">
-    <div class="box">
-
+      </div>
+    </div>
+    <video id="preview"></video>
+    <div class="modal-main">
+      <div class="modal">
+        <h1>QR code Content</h1>
+        <h3 id="output">No Content</h3>
+        <button class="closeModal">CLOSE</button>
+      </div>
     </div>
   </div>
-  <video id="preview"></video>
-  <div class="modal-main">
-    <div class="modal">
-      <h1>QR code Content</h1>
-      <h3 id="output">No Content</h3>
-      <button class="closeModal">CLOSE</button>
-    </div>
+  <div class="loader">
+    <div></div>
+    <h2>Loading...</h2>
   </div>
-
 
 
   <script src="./instascan.min.js"></script>
